@@ -7,10 +7,10 @@ from tqdm import tqdm
 import pulp
 from profiler import profile
 import os
-import shutil
 
 from utils import configure_target
 
+enable_trt = True
 
 assert len(sys.argv) in [3, 4]
 onnx_graph = gs.import_onnx(onnx.load(sys.argv[1]))
@@ -234,10 +234,8 @@ for subgraph_id, (inputs, outputs) in enumerate(cut_points):
 
     latency = []
     for i, (_, params) in enumerate(tqdm(K)):
-        latency.append(profile(f"{onnx_dir}{i + 1}.onnx", params, DEVICE, TARGET, RPC_CONFIG, TARGET_DEVICE, f"./{sys.argv[1]}{subgraph_id}/"))
-        # print(candidate_kernel, latency[-1], sep='\n', file=open("latency.txt", "a"))
+        latency.append(profile(f"{onnx_dir}{i + 1}.onnx", params, DEVICE, TARGET, RPC_CONFIG, TARGET_DEVICE, f"./{sys.argv[1]}{subgraph_id}/", enable_trt))
     print(latency, file=open("latency.txt", "a"))
-    # exit()
 
     ### Build and solve binary programming ###
 

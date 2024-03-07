@@ -17,8 +17,7 @@ def trt_profile(onnx_path, trt_path="trt.log"):
         f"--onnx={onnx_path}",
         "--dumpProfile",
         "--iterations=100",
-        "--duration=0",
-        "--device=1"],
+        "--duration=0"],
         stdout=open(trt_path, "w"), stderr=null)
     for line in open(trt_path):
         if "GPU Compute Time: m" in line:
