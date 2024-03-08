@@ -10,7 +10,7 @@ import os
 
 from utils import configure_target
 
-enable_trt = True
+enable_trt = False
 
 assert len(sys.argv) in [3, 4]
 onnx_graph = gs.import_onnx(onnx.load(sys.argv[1]))
