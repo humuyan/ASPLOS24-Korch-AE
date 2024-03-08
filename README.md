@@ -1,6 +1,6 @@
 # Korch AE
 
-## Environment preparation
+## Environment Preparation
 
 ### Set up Python Environment
 
@@ -39,7 +39,7 @@ trtexec
 
 Showing `&&&& PASSED TensorRT.trtexec [TensorRT v8200] # trtexec` means that TensorRT has been installed correctly.
 
-### Clone Korch Repo and compile Korch's compute-bound profiler
+### Clone Korch Repo and Compile Korch's Compute-bound Profiler
 
 ```bash
 git clone https://github.com/humuyan/ASPLOS24-Korch-AE.git korch
@@ -48,7 +48,7 @@ cd korch/operators
 cp compute_bound_profiler.cpython-39-x86_64-linux-gnu.so ../framework
 ```
 
-## Run TensorRT baseline
+## Run TensorRT Baseline
 
 ```bash
 cd korch/cases
@@ -60,7 +60,7 @@ After each run, `GPU Compute Time: min = XXX ms, max = XXX ms, mean = XXX ms, me
 
 ## Run Korch
 
-### Operator fission
+### Operator Fission
 
 ```bash
 cd ../framework
@@ -72,10 +72,11 @@ You can use `netron` to visualize the ONNX graph to see the difference after ope
 
 Run `trtexec --onnx=segformer_fission.onnx` to get the result of adaption study over TensorRT. The numbers should be similar with Figure 7 in the paper.
 
-### Kernel orchestration
+### Kernel Orchestration
 
 ```bash
 python calc.py candy_fission.onnx v100
 python calc.py segformer_fission.onnx v100
 ```
 
+The kernel orchestration strategy and overall latencies will be shown in the terminal.
